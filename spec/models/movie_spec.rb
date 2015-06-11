@@ -129,27 +129,19 @@ describe 'Movie' do
       end
 
       it 'can update all records at once' do
-        5.times do |i|
-          Movie.create(title: "Movie_#{i}", release_date: 2000+i)
-        end
-        Movie.update_all(title: "A Movie")
+        can_update_multiple_items_at_once
         expect(Movie.where(title: "A Movie").size).to eq(5)
       end
     end
 
     context 'destroying' do
       it 'can destroy a single item' do
-        Movie.create(title: "That One Where the Guy Kicks Another Guy Once")
-        movie = Movie.find_by(title: "That One Where the Guy Kicks Another Guy Once")
-        movie.destroy
+        can_destroy_a_single_item
         expect(Movie.find_by(title: "That One Where the Guy Kicks Another Guy Once")).to be_nil
       end
 
       it 'can destroy all items at once' do
-        10.times do |i|
-          Movie.create(title: "Movie_#{i}")
-        end
-        Movie.destroy_all
+        can_destroy_all_items_at_once
         expect(Movie.all.size).to eq(0)
       end
     end
