@@ -98,17 +98,17 @@ describe 'Movie' do
         expect(movies_size).to eq(5)
       end
 
-      it 'can retrive from the database using an id' do
-        expect(Movie.find(1).title).to eq("Movie_0")
+      it 'can retrive the first item from the database by id' do
+        expect(can_find_the_first_item_from_the_database_using_id).to eq("Movie_0")
       end
 
       it 'can retrieve from the database using different attributes' do
         movie = Movie.create(title: "Title", release_date: 2000, director: "Me")
-        expect(Movie.find_by(title: "Title", release_date: 2000)).to eq(movie)
+        expect(can_find_by_multiple_attributes).to eq(movie)
       end
 
       it 'can use a where clause and be sorted' do
-        expect(Movie.where("release_date > 2002").order(release_date: :desc).map{|m| m.title}).to eq(["Movie_4", "Movie_3"])
+        expect(can_find_using_where_clause.map{|m| m.title}).to eq(["Movie_4", "Movie_3"])
       end
     end
 
