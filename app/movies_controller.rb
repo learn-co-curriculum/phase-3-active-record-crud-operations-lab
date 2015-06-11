@@ -1,4 +1,3 @@
-
 def can_be_instantiated_and_then_saved
   movie = Movie.new
   movie.title = "This is a title."
@@ -6,6 +5,7 @@ def can_be_instantiated_and_then_saved
 end
 
 def can_be_created_with_a_hash_of_attributes
+  # Initialize movie and then and save it
   attributes = {
       title: "The Sting",
       release_date: 1973,
@@ -27,11 +27,11 @@ def can_be_created_in_a_block(args = { title: "Home Alone", release_date: 1990 }
 end
 
 def can_get_the_first_item_in_the_database
-  Movie.first.title
+  Movie.first
 end
 
 def can_get_the_last_item_in_the_database
-  Movie.last.title
+  Movie.last
 end
 
 def can_get_size_of_the_database
@@ -39,7 +39,7 @@ def can_get_size_of_the_database
 end
 
 def can_find_the_first_item_from_the_database_using_id
-  Movie.find_by(id:1).title
+  Movie.find_by(id:1)
 end
 
 def can_find_by_multiple_attributes
@@ -55,7 +55,6 @@ def can_be_found_updated_and_saved
   movie = Movie.find_by(title:"Awesome Flick")
   movie.update(title: "Even Awesomer Flick")
   movie.save
-
 end
 
 def can_update_using_update_method
