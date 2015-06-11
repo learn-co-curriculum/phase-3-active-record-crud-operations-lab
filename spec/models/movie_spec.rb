@@ -60,22 +60,17 @@ describe 'Movie' do
   context 'basic CRUD' do
     context 'creating' do
       it 'can be instantiated and then saved' do
-        movie = __
-        movie.title = "This is a title."
-        __
+        can_be_instantiated_and_then_saved
         expect(Movie.find_by(title: "This is a title.").title).to eq("This is a title.")
       end
 
       it 'can be created with a hash of attributes' do
-        movie = __
-        expect(Movie.find_by(__)).to eq(movie)
+        movie = can_be_created_with_a_hash_of_attributes
+        expect(Movie.find_by(attributes)).to eq(movie)
       end
 
       it 'can be created in a block' do
-        movie = Movie.create do |m|
-          __
-        end
-
+        movie = can_be_created_in_a_block
         expect(Movie.last).to eq(movie)
       end
     end
