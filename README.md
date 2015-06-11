@@ -7,7 +7,9 @@ Update, Delete) actions using Active Record.
 
 There are different ways to solve this lab so feel free to experiment!
 
-## Instructions
+##Instructions
+Before starting this lab run `bundle`, to get the proper gem dependencies and `rake -T`, which will list all of the rake tasks you have available in this lab. These tasks come with the `sinatra-activerecord` gem.
+Start the lab by running `learn` or keep reading for more instructions.
 
 Before starting this lab run `bundle`, to get the proper gem dependencies. If
 your operating system is OSX El Capitan, and you have an issue installing
