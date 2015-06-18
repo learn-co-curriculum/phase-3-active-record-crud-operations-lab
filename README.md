@@ -25,6 +25,7 @@ Run `rspec` or `learn` to see the tests. To make them pass open `crud_controller
 In each method the `__` corresponds to a line of code you will need to right to make the spec pass. 
 
 Each test will take us through performing a basic CRUD action using the database we just created. These tests will take you through:
+
 ####Create
 * A movie can be instantiated, given a title, and saved
 * A movie can be instantiated with a hash containing all of its attributes
