@@ -44,7 +44,7 @@ describe 'Movie' do
       expect{Movie.new}.to_not raise_error
     end
 
-    it 'can be instantiated with a hasn of attributes' do
+    it 'can be instantiated with a hash of attributes' do
       expect{Movie.new(attributes)}.to_not raise_error
     end
   end
@@ -60,21 +60,17 @@ describe 'Movie' do
   context 'basic CRUD' do
     context 'creating' do
       it 'can be instantiated and then saved' do
-        movie = Movie.new
-        movie.title = "This is a title."
-        movie.save
+        can_be_instantiated_and_then_saved
         expect(Movie.find_by(title: "This is a title.").title).to eq("This is a title.")
       end
 
       it 'can be created with a hash of attributes' do
-        movie = Movie.create(attributes)
+        movie = can_be_created_with_a_hash_of_attributes
         expect(Movie.find_by(attributes)).to eq(movie)
       end
 
       it 'can be created in a block' do
-        movie = Movie.create do |m|
-          m.title = "Woo!"
-        end
+        movie = can_be_created_in_a_block
 
         expect(Movie.last).to eq(movie)
       end
@@ -88,28 +84,31 @@ describe 'Movie' do
       end
       
       it 'can get the first item in the database' do
-        expect(Movie.first.title).to eq("Movie_0")
+        movie = can_get_the_first_item_in_the_database
+        expect(movie).to eq("Movie_0")
       end
 
       it 'can get the last item in the databse' do
-        expect(Movie.last.title).to eq("Movie_4")
+        movie = can_get_the_last_item_in_the_database
+        expect(movie).to eq("Movie_4")
       end
 
-      it 'can get all items from the database' do
-        expect(Movie.all.size).to eq(5)
+      it 'can get size of the database' do
+        movies_size = can_get_size_of_the_database
+        expect(movies_size).to eq(5)
       end
 
-      it 'can retrive from the database using an id' do
-        expect(Movie.find(1).title).to eq("Movie_0")
+      it 'can retrive the first item from the database by id' do
+        expect(can_find_the_first_item_from_the_database_using_id).to eq("Movie_0")
       end
 
       it 'can retrieve from the database using different attributes' do
         movie = Movie.create(title: "Title", release_date: 2000, director: "Me")
-        expect(Movie.find_by(title: "Title", release_date: 2000)).to eq(movie)
+        expect(can_find_by_multiple_attributes).to eq(movie)
       end
 
       it 'can use a where clause and be sorted' do
-        expect(Movie.where("release_date > 2002").order(release_date: :desc).map{|m| m.title}).to eq(["Movie_4", "Movie_3"])
+        expect(can_find_using_where_clause.map{|m| m.title}).to eq(["Movie_4", "Movie_3"])
       end
     end
 
@@ -130,27 +129,19 @@ describe 'Movie' do
       end
 
       it 'can update all records at once' do
-        5.times do |i|
-          Movie.create(title: "Movie_#{i}", release_date: 2000+i)
-        end
-        Movie.update_all(title: "A Movie")
+        can_update_multiple_items_at_once
         expect(Movie.where(title: "A Movie").size).to eq(5)
       end
     end
 
     context 'destroying' do
       it 'can destroy a single item' do
-        Movie.create(title: "That One Where the Guy Kicks Another Guy Once")
-        movie = Movie.find_by(title: "That One Where the Guy Kicks Another Guy Once")
-        movie.destroy
+        can_destroy_a_single_item
         expect(Movie.find_by(title: "That One Where the Guy Kicks Another Guy Once")).to be_nil
       end
 
       it 'can destroy all items at once' do
-        10.times do |i|
-          Movie.create(title: "Movie_#{i}")
-        end
-        Movie.destroy_all
+        can_destroy_all_items_at_once
         expect(Movie.all.size).to eq(0)
       end
     end
