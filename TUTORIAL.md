@@ -19,9 +19,9 @@ class CreateMovies < ActiveRecord::Migration
   end
 end
 ```
-You can then run `rake db:migrate` to migrate your datatabase and `rake db:migrate SINATRA_ENV=test` to migrate your test db so we can pass our specs.
+You can then run `rake db:migrate` to migrate your database and `rake db:migrate SINATRA_ENV=test` to migrate your test db so we can pass our specs.
 ##CRUD actions
-Once you finish th emigration you will be able to start working with the crud actions. Some of the tests will pass by default. To start passing the tests open the `movies_controller.rb` and replace the ___ with the proper code to pass each test
+Once you finish the migration you will be able to start working with the crud actions. Some of the tests will pass by default. To start passing the tests open the `movies_controller.rb` and replace the ___ with the proper code to pass each test
 ### Can be instantiated and then saved
 ```
 def can_be_instantiated_and_then_saved
@@ -30,7 +30,7 @@ def can_be_instantiated_and_then_saved
   movie.save
 end
 ```
-The first and third line of this method will need to be replaced. All  you have to do is create a new instance of the `Movie` class, it is given a title on line two and then use `save` to save it to the database. Since your model is inheriting from active record you just have to call the the method `save` on the instance of movie and it will be saved to the database. 
+The first and third line of this method will need to be replaced. All you have to do is create a new instance of the `Movie` class, it is given a title on line two and then use `save` to save it to the database. Since your model is inheriting from active record you just have to call the the method `save` on the instance of movie and it will be saved to the database. 
 ###Can be created with a hash of attributes
 
 ```
@@ -85,7 +85,7 @@ def can_find_the_first_item_from_the_database_using_id
   Movie.find(1).title
 end
 ```
-Using the Active record `find` method we are able to pull out specific elements form the database. The default arugument for find is the ID, however as you will see later we can use other arguments as well.
+Using the Active record `find` method we are able to pull out specific elements form the database. The default argument for find is the ID, however as you will see later we can use other arguments as well.
 
 ### Can find by multiple attributes
 ```
@@ -105,7 +105,7 @@ def can_find_using_where_clause
   Movie.where("release_date > 2002").order(release_date: :desc)
 end
 ```
-The `where` method in active record is similar to `WHERE` in sql, it allows you to pass in a condition as an argument and will then only return rows from the database which containt the information stipulated.
+The `where` method in active record is similar to `WHERE` in sql, it allows you to pass in a condition as an argument and will then only return rows from the database which contain the information stipulated.
 ### Can be found, updated, and saved
 ```
 def can_be_found_updated_and_saved
@@ -116,7 +116,7 @@ def can_be_found_updated_and_saved
   movie.save
 end
 ```
-IN this section we create a moveie, find it by the title and then change the title. We no longer have to make a SQL statement to do so, we can just use ruby code to set the title equal to a different 
+In this section we create a movie, find it by the title and then change the title. We no longer have to make a SQL statement to do so, we can just use ruby code to set the title equal to a different 
 ### Can be updated using the update method
 ```
 def can_update_using_update_method
