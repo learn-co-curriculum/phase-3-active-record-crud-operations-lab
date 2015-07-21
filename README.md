@@ -79,3 +79,8 @@ we just created. These tests will take you through:
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/activerecord-crud' title='Active Record CRUD'>Active Record CRUD</a> on Learn.co and start learning to code for free.</p>
 
+<<<<<<< HEAD
+=======
+##Resources
+[Active Record Query Interface](http://guides.rubyonrails.org/active_record_querying.html).
+>>>>>>> Update README.md
