@@ -1,8 +1,3 @@
----
-tags: activerecord, orm, oop, introduction, crud
-languages: ruby
----
-
 # Active Record CRUD
 
 ## Objective
