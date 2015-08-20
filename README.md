@@ -15,7 +15,7 @@ Once you have a migration file add columns for title ,release_date, director, le
 After your migration is ready run `rake db:migrate` to migrate your table and `rake db:migrate SINATRA_ENV=test` to migrate a test database so you will be able to run `learn`
 
 ###Tests
-Run `rspec` or `learn` to see the tests. To make them pass open `crud_controller.rb` and complete each method. It will help to open `spec/models/movie_spec/rb` to see exactly what each spec is testing for.
+Run `rspec` or `learn` to see the tests. To make them pass open `movie_controller.rb` and complete each method. It will help to open `spec/models/movie_spec/rb` to see exactly what each spec is testing for.
 
 In each method the `__` corresponds to a line of code you will need to right to make the spec pass. 
 
