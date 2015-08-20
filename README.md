@@ -11,15 +11,16 @@ Start the lab by running `learn` or keep reading for more instructions.
 
 ###Create Table
 Try using the rake task `rake db:create_migration NAME=create_movies` to create your migration file.
-Once you have a migration file add columns for title ,release_date, director, lead, and in_theatres.
+Once you have a migration file add columns for title ,release_date, director, lead, and in_theaters.
 After your migration is ready run `rake db:migrate` to migrate your table and `rake db:migrate SINATRA_ENV=test` to migrate a test database so you will be able to run `learn`
 
 ###Tests
-Run `rspec` or `learn` to see the tests. To make them pass open `crud_controller.rb` and complete each method. It will help to open `spec/models/movie_spec/rb` to see exactly what each spec is testing for.
+Run `rspec` or `learn` to see the tests. To make them pass open `movie_controller.rb` and complete each method. It will help to open `spec/models/movie_spec.rb` to see exactly what each spec is testing for.
 
 In each method the `__` corresponds to a line of code you will need to right to make the spec pass. 
 
 Each test will take us through performing a basic CRUD action using the database we just created. These tests will take you through:
+
 ####Create
 * A movie can be instantiated, given a title, and saved
 * A movie can be instantiated with a hash containing all of its attributes
