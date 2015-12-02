@@ -45,3 +45,5 @@ Each test will take us through performing a basic CRUD action using the database
 
 ##Resources
 [Active Record Query Interface](http://guides.rubyonrails.org/active_record_querying.html).
+
+<a href='https://learn.co/lessons/activerecord-crud' data-visibility='hidden'>View this lesson on Learn.co</a>
