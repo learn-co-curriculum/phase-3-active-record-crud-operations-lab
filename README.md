@@ -6,7 +6,10 @@ The goal of this lab is to get comfortable performing CRUD (Create, Read, Update
 There are different ways to solve this lab so feel free to experiment!
 
 ##Instructions
-Before starting this lab run `bundle`, to get the proper gem dependencies and `rake -T`, which will list all of the rake tasks you have available in this lab. These tasks come with the `sinatra-activerecord` gem.
+Before starting this lab run `bundle`, to get the proper gem dependencies. If your operating system is OSX El Capitan, and you have an issue installing `EventMachine`, enter `brew link openssl --force` in terminal. 
+
+Also enter `rake -T`, which will list all of the rake tasks you have available in this lab. These tasks come with the `sinatra-activerecord` gem.
+
 Start the lab by running `learn` or keep reading for more instructions.
 
 ###Create Table
@@ -17,7 +20,7 @@ After your migration is ready run `rake db:migrate` to migrate your table and `r
 ###Tests
 Run `rspec` or `learn` to see the tests. To make them pass open `movie_controller.rb` and complete each method. It will help to open `spec/models/movie_spec.rb` to see exactly what each spec is testing for.
 
-In each method the `__` corresponds to a line of code you will need to right to make the spec pass. 
+In each method the `__` corresponds to a line of code you will need to write to make the spec pass. 
 
 Each test will take us through performing a basic CRUD action using the database we just created. These tests will take you through:
 
@@ -45,3 +48,5 @@ Each test will take us through performing a basic CRUD action using the database
 
 ##Resources
 [Active Record Query Interface](http://guides.rubyonrails.org/active_record_querying.html).
+
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/activerecord-crud' title='Active Record CRUD'>Active Record CRUD</a> on Learn.co and start learning to code for free.</p>
