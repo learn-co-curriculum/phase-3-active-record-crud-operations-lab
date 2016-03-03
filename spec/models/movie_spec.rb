@@ -44,7 +44,7 @@ describe 'Movie' do
       expect{Movie.new}.to_not raise_error
     end
 
-    it 'can be instantiated with a hasn of attributes' do
+    it 'can be instantiated with a hash of attributes' do
       expect{Movie.new(attributes)}.to_not raise_error
     end
   end
@@ -71,7 +71,10 @@ describe 'Movie' do
 
       it 'can be created in a block' do
         movie = can_be_created_in_a_block
+
         expect(Movie.last).to eq(movie)
+        expect(Movie.last.title).to eq("Home Alone")
+         expect(Movie.last.release_date).to eq(1990)
       end
     end
 
@@ -83,39 +86,47 @@ describe 'Movie' do
       end
       
       it 'can get the first item in the database' do
-        expect(can_get_the_first_item_in_the_database).to eq("Movie_0")
+        movie = can_get_the_first_item_in_the_database
+        expect(movie).to eq("Movie_0")
       end
 
       it 'can get the last item in the databse' do
-        expect(can_get_the_last_item_in_the_database).to eq("Movie_4")
+        movie = can_get_the_last_item_in_the_database
+        expect(movie).to eq("Movie_4")
       end
 
-      it 'can get the size of the database' do
-        expect(can_get_size_of_the_database).to eq(5)
+      it 'can get size of the database' do
+        movies_size = can_get_size_of_the_database
+        expect(movies_size).to eq(5)
       end
 
-      it 'can retrive from the database using an id' do
+      it 'can retrive the first item from the database by id' do
         expect(can_find_the_first_item_from_the_database_using_id).to eq("Movie_0")
       end
 
       it 'can retrieve from the database using different attributes' do
         movie = Movie.create(title: "Title", release_date: 2000, director: "Me")
-        expect(can_find_by_different_attributes).to eq(movie)
+        expect(can_find_by_multiple_attributes).to eq(movie)
       end
 
       it 'can use a where clause and be sorted' do
-        expect(can_find_using_where_clause_and_be_sorted.map{|m| m.title}).to eq(["Movie_4", "Movie_3"])
+        expect(can_find_using_where_clause.map{|m| m.title}).to eq(["Movie_4", "Movie_3"])
       end
     end
 
     context 'updating' do
       it 'can be found, updated, and saved' do
-        can_be_found_updated_and_saved
+        Movie.create(title: "Awesome Flick")
+        movie = Movie.find_by(title: "Awesome Flick")
+        movie.title = "Even Awesomer Flick"
+        movie.save
         expect(Movie.find_by(title: "Even Awesomer Flick")).to_not be_nil
       end
 
       it 'can be updated using #update' do
-        can_update_using_update_method
+        Movie.create(title: "Wat?")
+        movie = Movie.find_by(title: "Wat?")
+        movie.update(title: "Wat, huh?")
         expect(Movie.find_by(title: "Wat, huh?")).to_not be_nil
       end
 
