@@ -6,7 +6,10 @@ The goal of this lab is to get comfortable performing CRUD (Create, Read, Update
 There are different ways to solve this lab so feel free to experiment!
 
 ##Instructions
-Before starting this lab run `bundle`, to get the proper gem dependencies and `rake -T`, which will list all of the rake tasks you have available in this lab. These tasks come with the `sinatra-activerecord` gem.
+Before starting this lab run `bundle`, to get the proper gem dependencies. If your operating system is OSX El Capitan, and you have an issue installing `EventMachine`, first check to make sure Open SSL is installed by entering `brew install openssl` in terminal. Once it's installed, enter `brew link openssl --force`.
+
+Also enter `rake -T`, which will list all of the rake tasks you have available in this lab. These tasks come with the `sinatra-activerecord` gem.
+
 Start the lab by running `learn` or keep reading for more instructions.
 
 ###Create Table
