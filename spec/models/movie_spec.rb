@@ -10,7 +10,7 @@ describe 'Movie' do
   it 'inherits from ActiveRecord::Base' do
     expect(Movie.superclass).to eq(ActiveRecord::Base)
   end
-  
+
   context 'Movie.new' do
     let(:movie) { Movie.new }
     it 'has a title' do
@@ -73,6 +73,8 @@ describe 'Movie' do
         movie = can_be_created_in_a_block
 
         expect(Movie.last).to eq(movie)
+        expect(Movie.last.title).to eq("Home Alone")
+        expect(Movie.last.release_date).to eq(1990)
       end
     end
 
@@ -82,7 +84,7 @@ describe 'Movie' do
           Movie.create(title: "Movie_#{i}", release_date: i+2000)
         end
       end
-      
+
       it 'can get the first item in the database' do
         movie = can_get_the_first_item_in_the_database
         expect(movie).to eq("Movie_0")
