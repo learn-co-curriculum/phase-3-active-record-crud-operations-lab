@@ -116,11 +116,11 @@ describe 'Movie' do
 
     context 'updating' do
       it 'can be found, updated, and saved' do
-        Movie.create(title: "Awesome Flick")
-        movie = Movie.find_by(title: "Awesome Flick")
-        movie.title = "Even Awesomer Flick"
-        movie.save
-        expect(Movie.find_by(title: "Even Awesomer Flick")).to_not be_nil
+        movie = Movie.create(title: "Awesome Flick")
+        expect {
+          can_be_found_updated_and_saved
+          movie.reload
+        }.to change{ movie.title }.from("Awesome Flick").to("Even Awesomer Flick")
       end
 
       it 'can be updated using #update' do
