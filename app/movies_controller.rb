@@ -11,21 +11,14 @@ def can_be_instantiated_and_then_saved
   movie.save
 end
 
-def can_be_created_with_a_hash_of_attributes
-  attributes = {
-      title: "The Sting",
-      release_date: 1973,
-      director: "George Roy Hill",
-      lead: "Paul Newman",
-      in_theaters: false
-  }
+def can_be_created_with_a_hash_of_attributes(attributes)
   movie = Movie.create(attributes)
 end
 
-def can_be_created_in_a_block
+def can_be_created_in_a_block(title, year)
   movie = Movie.create do |m|
-    m.title = "Home Alone"
-    m.release_date = 1990
+    m.title = title
+    m.release_date = year
   end
 end
 
@@ -52,14 +45,14 @@ def can_find_by_multiple_attributes
   Movie.find_by(title: "Title", release_date: 2000)
 end
 
-def can_find_using_where_clause
+def can_find_using_where_clause_and_be_sorted
   # For this test return all movies released after 2002 and ordered by 
   # release date descending
   Movie.where("release_date > 2002").order(release_date: :desc)
 end
 
 def can_be_found_updated_and_saved
-  # Updtate the title "Awesome Flick" to "Even Awesomer Flick"
+  # Update the title "Awesome Flick" to "Even Awesomer Flick"
   Movie.create(title: "Awesome Flick")
   movie = Movie.find_by(title: "Awesome Flick")
   movie.title = "Even Awesomer Flick"
