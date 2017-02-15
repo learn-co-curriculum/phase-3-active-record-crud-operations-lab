@@ -65,12 +65,15 @@ describe 'Movie' do
       end
 
       it 'can be created with a hash of attributes' do
-        movie = can_be_created_with_a_hash_of_attributes
+        movie = can_be_created_with_a_hash_of_attributes(attributes)
+
         expect(Movie.find_by(attributes)).to eq(movie)
       end
 
       it 'can be created in a block' do
-        movie = can_be_created_in_a_block
+        title = "Home Alone"
+        year  = 1990
+        movie = can_be_created_in_a_block(title, year)
 
         expect(Movie.last).to eq(movie)
         expect(Movie.last.title).to eq("Home Alone")
@@ -110,7 +113,7 @@ describe 'Movie' do
       end
 
       it 'can use a where clause and be sorted' do
-        expect(can_find_using_where_clause.map{|m| m.title}).to eq(["Movie_4", "Movie_3"])
+        expect(can_find_using_where_clause_and_be_sorted.map{|m| m.title}).to eq(["Movie_4", "Movie_3"])
       end
     end
 
@@ -127,6 +130,9 @@ describe 'Movie' do
         Movie.create(title: "Wat?")
         movie = Movie.find_by(title: "Wat?")
         movie.update(title: "Wat, huh?")
+
+        can_update_using_update_method
+
         expect(Movie.find_by(title: "Wat, huh?")).to_not be_nil
       end
 
