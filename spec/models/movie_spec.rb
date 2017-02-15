@@ -65,12 +65,14 @@ describe 'Movie' do
       end
 
       it 'can be created with a hash of attributes' do
-        movie = can_be_created_with_a_hash_of_attributes
+        movie = can_be_created_with_a_hash_of_attributes(attributes)
         expect(Movie.find_by(attributes)).to eq(movie)
       end
 
       it 'can be created in a block' do
-        movie = can_be_created_in_a_block
+        title = "Home Alone"
+        year  = 1990
+        movie = can_be_created_in_a_block(title, year)
 
         expect(Movie.last).to eq(movie)
         expect(Movie.last.title).to eq("Home Alone")

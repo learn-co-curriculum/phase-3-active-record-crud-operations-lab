@@ -11,18 +11,11 @@ def can_be_instantiated_and_then_saved
   __
 end
 
-def can_be_created_with_a_hash_of_attributes
-  attributes = {
-      title: "The Sting",
-      release_date: 1973,
-      director: "George Roy Hill",
-      lead: "Paul Newman",
-      in_theaters: false
-  }
+def can_be_created_with_a_hash_of_attributes(attributes)
   movie = __
 end
 
-def can_be_created_in_a_block
+def can_be_created_in_a_block(title, year)
   Movie.create do |m|
     __
   end
