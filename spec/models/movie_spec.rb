@@ -35,7 +35,7 @@ describe 'Movie' do
 
     it 'has an in theaters flag' do
       movie.in_theaters = false
-      expect(movie.in_theaters).to eq(false)
+      expect(movie.in_theaters?).to be_falsey
     end
   end
 
