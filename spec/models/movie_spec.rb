@@ -132,7 +132,12 @@ describe 'Movie' do
       end
 
       it 'can be updated using #update' do
+        Movie.create(title: "Wat?")
+        movie = Movie.find_by(title: "Wat?")
+        movie.update(title: "Wat, huh?")
+
         can_update_using_update_method
+
         expect(Movie.find_by(title: "Wat, huh?")).to_not be_nil
       end
 
