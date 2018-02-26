@@ -91,6 +91,7 @@ describe 'Movie' do
         5.times do |i|
           Movie.create(title: "Movie_#{i}", release_date: i+2000)
         end
+        Movie.last.update_attribute(:id, 999)
       end
 
       it 'can get the first item in the database' do
