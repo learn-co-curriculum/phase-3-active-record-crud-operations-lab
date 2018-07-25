@@ -14,7 +14,7 @@ Start the lab by running `learn` or keep reading for more instructions.
 
 ### Create Table
 Try using the rake task `rake db:create_migration NAME=create_movies` to create your migration file.
-Once you have a migration file add columns for title (string) ,release_date (interger), director (string), lead (string), and in_theaters (boolean).
+Once you have a migration file add columns for title \(string\), release_date \(interger\), director \(string\), lead \(string\), and in_theaters \(boolean\).
 After your migration is ready run `rake db:migrate` to migrate your table and `rake db:migrate SINATRA_ENV=test` to migrate a test database so you will be able to run `learn`
 
 ### Tests
