@@ -77,7 +77,6 @@ describe 'Movie' do
       end
 
       it 'can be created in a block' do
-        movie = can_be_created_in_a_block
         args = { title: "The Room", release_date: 2003 }
         movie = can_be_created_in_a_block(args)
 
@@ -96,12 +95,12 @@ describe 'Movie' do
 
       it 'can get the first item in the database' do
         movie = can_get_the_first_item_in_the_database
-        expect(movie).to eq("Movie_0")
+        expect(movie.title).to eq("Movie_0")
       end
 
       it 'can get the last item in the databse' do
         movie = can_get_the_last_item_in_the_database
-        expect(movie).to eq("Movie_4")
+        expect(movie.title).to eq("Movie_4")
       end
 
       it 'can get size of the database' do
@@ -110,7 +109,7 @@ describe 'Movie' do
       end
 
       it 'can retrive the first item from the database by id' do
-        expect(can_find_the_first_item_from_the_database_using_id).to eq("Movie_0")
+        expect(can_find_the_first_item_from_the_database_using_id.title).to eq("Movie_0")
       end
 
       it 'can retrieve from the database using different attributes' do
