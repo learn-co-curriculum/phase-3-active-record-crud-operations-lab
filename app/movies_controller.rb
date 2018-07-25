@@ -23,6 +23,10 @@ def can_be_created_with_a_hash_of_attributes
 end
 
 def can_be_created_in_a_block(args = __)
+  # If no arguments are passed, use default values:
+  # title == "Home Alone"
+  # release_date == 1990
+  
   Movie.create do |m|
     __
   end
@@ -45,6 +49,7 @@ def can_find_the_first_item_from_the_database_using_id
 end
 
 def can_find_by_multiple_attributes
+  # Search Values:
   # title == "Title"
   # release_date == 2000
   # director == "Me"
