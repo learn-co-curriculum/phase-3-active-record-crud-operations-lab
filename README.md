@@ -16,7 +16,7 @@ your operating system is OSX El Capitan, and you have an issue installing
 Also enter `rake -T`, which will list all of the rake tasks you have available
 in this lab. These tasks come with the `sinatra-activerecord` gem.
 
-Start the lab by running `learn` or keep reading for more instructions.
+Start the lab by running `learn test` or keep reading for more instructions.
 
 ### Create Table
 
@@ -33,11 +33,11 @@ your migration file. Once you have a migration file add columns like so:
 
 After your migration is ready run `rake db:migrate` to
 migrate your table and `rake db:migrate SINATRA_ENV=test` to migrate a test
-database so you will be able to run `learn`
+database so you will be able to run `learn test`.
 
 ### Tests
 
-Run `rspec` or `learn` to see the tests. To make them pass open
+Run `rspec` or `learn test` to see the tests. To make them pass open
 `movie_controller.rb` and complete each method. It will help to open
 `spec/models/movie_spec.rb` to see exactly what each spec is testing for.
 
