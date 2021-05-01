@@ -1,6 +1,6 @@
-# Active Record CRUD
+# Active Record CRUD Operations Lab
 
-## Objective
+## Introduction
 
 The goal of this lab is to get comfortable performing CRUD (Create, Read,
 Update, Delete) actions using Active Record.
@@ -23,13 +23,33 @@ Start the lab by running `learn test` or keep reading for more instructions.
 Try using the rake task `rake db:create_migration NAME=create_movies` to create
 your migration file. Once you have a migration file add columns like so:
 
-|Column Name|Type|
-|----|-----------|
-|`title`|\(string\)|
-|`release_date`|\(integer\)|
-|`director`|\(string\)|
-|`lead`|\(string\)|
-|`in_theaters`|\(boolean\)|
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr>
+    <th>Column Name</th>
+    <th>Type</th>
+  </tr>
+  
+  <tr>
+    <td><code>title</code></td>
+    <td>(string)</td>
+  </tr>
+  <tr>
+    <td><code>release_date</code></td>
+    <td>(integer)</td>
+  </tr>
+  <tr>
+    <td><code>director</code></td>
+    <td>(string)</td>
+  </tr>
+  <tr>
+    <td><code>lead</code></td>
+    <td>(string)</td>
+  </tr>
+  <tr>
+    <td><code>in_theaters</code></td>
+    <td>(boolean)</td>
+  </tr>
+</table>
 
 After your migration is ready run `rake db:migrate` to
 migrate your table and `rake db:migrate SINATRA_ENV=test` to migrate a test
