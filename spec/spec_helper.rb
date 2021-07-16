@@ -1,29 +1,41 @@
-ENV["SINATRA_ENV"] = "test"
-
-require_relative '../config/environment'
-require 'rack/test'
-require 'database_cleaner'
-
-if ActiveRecord::Base.connection.migration_context.needs_migration?
-  raise 'Migrations are pending. Run `rake db:migrate SINATRA_ENV=test` to resolve the issue.'
-end
+ENV['RACK_ENV'] = 'test'
+require_relative "../config/environment"
+require "sinatra/activerecord/rake"
 
 RSpec.configure do |config|
+  # Database setup
+  if ActiveRecord::Base.connection.migration_context.needs_migration?
+    # Run migrations for test environment
+    Rake::Task["db:migrate"].execute
+  end
 
-  config.include Rack::Test::Methods
-  DatabaseCleaner.strategy = :truncation
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
   config.before do
-    DatabaseCleaner.clean
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before do
+    DatabaseCleaner.start
   end
 
   config.after do
     DatabaseCleaner.clean
   end
 
-  config.order = 'default'
-end
+  config.expect_with :rspec do |expectations|
+    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+  end
 
-def __
-  raise "Replace __ with test code."
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+  end
+  
+  config.shared_context_metadata_behavior = :apply_to_host_groups
 end

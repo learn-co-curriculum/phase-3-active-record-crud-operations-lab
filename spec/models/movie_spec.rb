@@ -1,157 +1,160 @@
-describe 'Movie' do
-  let(:attributes) {{
+describe Movie do
+  let(:movie) { Movie.new }
+  let(:attributes) do 
+    {
       title: "The Sting",
       release_date: 1973,
       director: "George Roy Hill",
       lead: "Paul Newman",
       in_theaters: false
-  }}
+    }
+  end
 
   it 'inherits from ActiveRecord::Base' do
     expect(Movie.superclass).to eq(ActiveRecord::Base)
   end
 
-  context 'Movie.new' do
-    let(:movie) { Movie.new }
-    it 'has a title' do
-      movie.title = "The Matrix"
-      expect(movie.title).to eq("The Matrix")
-    end
-
-    it 'has a release date' do
-      movie.release_date = 1999
-      expect(movie.release_date).to eq(1999)
-    end
-
-    it 'has a director' do
-      movie.director = "The Wachowski Sisters"
-      expect(movie.director).to eq("The Wachowski Sisters")
-    end
-
-    it 'has a lead actor/actress' do
-      movie.lead = "Keanu Reeves"
-      expect(movie.lead).to eq("Keanu Reeves")
-    end
-
-    it 'has an in theaters flag' do
-      movie.in_theaters = false
-      expect(movie.in_theaters?).to be_falsey
-    end
+  it 'has a title' do
+    movie.title = "The Matrix"
+    expect(movie.title).to eq("The Matrix")
   end
 
-  context '::new' do
-    it 'can be instantiated without any attributes' do
-      expect{Movie.new}.to_not raise_error
-    end
-
-    it 'can be instantiated with a hash of attributes' do
-      expect{Movie.new(attributes)}.to_not raise_error
-    end
+  it 'has a release date' do
+    movie.release_date = 1999
+    expect(movie.release_date).to eq(1999)
   end
 
-  context '#save' do
-    it 'can be saved to the database' do
-      movie = Movie.new(attributes)
-      movie.save
-      expect(Movie.find_by(attributes)).to eq(movie)
-    end
+  it 'has a director' do
+    movie.director = "The Wachowski Sisters"
+    expect(movie.director).to eq("The Wachowski Sisters")
   end
 
-  context 'basic CRUD' do
-    context 'creating' do
-      it 'can be instantiated and then saved' do
-        can_be_instantiated_and_then_saved
-        expect(Movie.find_by(title: "This is a title.").title).to eq("This is a title.")
+  it 'has a lead actor/actress' do
+    movie.lead = "Keanu Reeves"
+    expect(movie.lead).to eq("Keanu Reeves")
+  end
+
+  it 'has an in theaters flag' do
+    movie.in_theaters = false
+    expect(movie.in_theaters?).to be(false)
+  end
+
+  it 'can be instantiated with a hash of attributes' do
+    expect { Movie.new(attributes) }.not_to raise_error
+  end
+
+  describe 'Create' do
+
+    describe '.create_with_title' do
+      it 'saves the title to the movie' do
+        titled_movie = Movie.create_with_title("This is a title.")
+        expect(titled_movie.title).to eq("This is a title.")
       end
-
-      it 'can be created with a hash of attributes' do
-        movie = can_be_created_with_a_hash_of_attributes
-        expect(Movie.find_by(attributes)).to eq(movie)
-      end
-
-      it 'can be created in a block when no args are passed' do
-        movie = can_be_created_in_a_block
-
-        expect(movie.title).to eq("Home Alone")
-        expect(movie.release_date).to eq(1990)
-      end
-
-      it 'can be created in a block' do
-        args = { title: "The Room", release_date: 2003 }
-        movie = can_be_created_in_a_block(args)
-
-        expect(movie.title).to eq("The Room")
-        expect(movie.release_date).to eq(2003)
-      end
-   end
-
-    context 'reading' do
-      before do
-        5.times do |i|
-          Movie.create(title: "Movie_#{i}", release_date: i+2000)
-        end
-        Movie.last.update_attribute(:id, 999)
-      end
-
-      it 'can get the first item in the database' do
-        movie = can_get_the_first_item_in_the_database
-        expect(movie.title).to eq("Movie_0")
-      end
-
-      it 'can get the last item in the databse' do
-        movie = can_get_the_last_item_in_the_database
-        expect(movie.title).to eq("Movie_4")
-      end
-
-      it 'can get size of the database' do
-        movies_size = can_get_size_of_the_database
-        expect(movies_size).to eq(5)
-      end
-
-      it 'can retrive the first item from the database by id' do
-        expect(can_find_the_first_item_from_the_database_using_id.title).to eq("Movie_0")
-      end
-
-      it 'can retrieve from the database using different attributes' do
-        movie = Movie.create(title: "Title", release_date: 2000, director: "Me")
-        expect(can_find_by_multiple_attributes).to eq(movie)
-      end
-
-      it 'can use a where clause and be sorted' do
-        expect(can_find_using_where_clause_and_be_sorted.map{|m| m.title}).to eq(["Movie_4", "Movie_3"])
+  
+      it 'creates a new record in the database' do
+        expect { Movie.create_with_title("This is a title.") }.to change(Movie, :count).by(1)
       end
     end
 
-    context 'updating' do
-      it 'can be found, updated, and saved' do
+  end
+
+  describe 'Read' do
+    before do
+      Movie.create(title: "Movie_0", release_date: 2000)
+      Movie.create(title: "Movie_1", release_date: 2001)
+      Movie.create(title: "Movie_2", release_date: 2002)
+      Movie.create(title: "Movie_3", release_date: 2003)
+      Movie.create(title: "Movie_4", release_date: 2004)
+    end
+    
+    describe '.first_movie' do
+      it 'returns the first item in the movies table' do
+        expect(Movie.first_movie.title).to eq("Movie_0")
+      end
+    end
+    
+    describe '.last_movie' do
+      it 'returns the first item in the movies table' do
+        expect(Movie.last_movie.title).to eq("Movie_4")
+      end
+    end
+
+    describe '.movie_count' do
+      it 'returns the number of items in the movies table' do
+        expect(Movie.movie_count).to eq(5)
+      end
+    end
+
+    describe '.find_movie_with_id' do
+      it 'returns the movie with the corresponding id' do
+        expect(Movie.find_movie_with_id(1).title).to eq("Movie_0")
+      end
+    end
+
+    describe '.find_movie_with_attributes' do
+      it 'returns the movie with the corresponding attributes' do
+        found_movie = Movie.find_movie_with_attributes(title: "Movie_0", release_date: 2000)
+        expect(found_movie.title).to eq("Movie_0")
+      end
+    end
+
+    describe '.find_movies_after_2002' do
+      it 'returns a list of movies released after 2002' do
+        found_movies = Movie.find_movies_after_2002
+
+        expect(found_movies).to match_array([
+          have_attributes(class: Movie, title: "Movie_3", release_date: 2003),
+          have_attributes(class: Movie, title: "Movie_4", release_date: 2004)
+        ])
+      end
+    end
+
+  end
+
+  describe 'Update' do
+
+    describe '#update_with_arguments' do
+      it 'updates one movie' do
         movie = Movie.create(title: "Awesome Flick")
-        expect {
-          can_be_found_updated_and_saved
-          movie.reload
-        }.to change{ movie.title }.from("Awesome Flick").to("Even Awesomer Flick")
-      end
-
-      it 'can be updated using #update' do
-        can_update_using_update_method
-        expect(Movie.find_by(title: "Wat, huh?")).to_not be_nil
-      end
-
-      it 'can update all records at once' do
-        can_update_multiple_items_at_once
-        expect(Movie.where(title: "A Movie").size).to eq(5)
+  
+        expect do 
+          movie.update_with_arguments(title: "Even Awesomer Flick")
+        end.to change(movie, :title).from("Awesome Flick").to("Even Awesomer Flick")
       end
     end
 
-    context 'destroying' do
-      it 'can destroy a single item' do
-        can_destroy_a_single_item
-        expect(Movie.find_by(title: "That One Where the Guy Kicks Another Guy Once")).to be_nil
-      end
-
-      it 'can destroy all items at once' do
-        can_destroy_all_items_at_once
-        expect(Movie.all.size).to eq(0)
+    describe '.update_all_titles' do
+      it 'updates the title of all the movies' do
+        Movie.create(title: "Awesome Flick")
+        Movie.create(title: "Even Awesomer Flick")
+        
+        Movie.update_all_titles("Untitled")
+  
+        expect(Movie.where(title: "Untitled")).to have_length(2)
       end
     end
   end
+
+  describe 'Delete' do
+    before do
+      Movie.create(title: "Movie_0", release_date: 2000)
+      Movie.create(title: "Movie_1", release_date: 2001)
+      Movie.create(title: "Movie_2", release_date: 2002)
+      Movie.create(title: "Movie_3", release_date: 2003)
+      Movie.create(title: "Movie_4", release_date: 2004)
+    end
+
+    describe '.delete_by_id' do
+      it 'deletes the record with the corresponding id' do
+        expect { Movie.delete_by_id(1) }.to change(Movie, :count).from(5).to(4)
+      end
+    end
+
+    describe '.delete_all_movies' do
+      it 'deletes all the movies from the movies table' do
+        expect { Movie.delete_all_movies }.to change(Movie, :count).from(5).to(0)
+      end
+    end
+  end
+
 end
