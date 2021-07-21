@@ -1,86 +1,144 @@
-# Active Record CRUD
+# Active Record CRUD Operations Lab
 
-## Objective
+## Introduction
 
 The goal of this lab is to get comfortable performing CRUD (Create, Read,
 Update, Delete) actions using Active Record.
 
 There are different ways to solve this lab so feel free to experiment!
 
+## Setup
+
+First, run `bundle install` to install the dependencies from the Gemfile.
+
+Next, run `bundle exec rake -T`, which will list all of the rake tasks you have
+available in this lab. These tasks come with the `sinatra-activerecord` gem.
+
+Start the lab by running `learn test` or keep reading for more instructions.
+
+## Create Table
+
+Try using a Rake task to create your migration file:
+
+```sh
+bundle exec rake db:create_migration NAME=create_movies
+```
+
+Once you have a migration file, add columns like so:
+
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr>
+    <th>Column Name</th>
+    <th>Type</th>
+  </tr>
+  
+  <tr>
+    <td><code>title</code></td>
+    <td>(string)</td>
+  </tr>
+  <tr>
+    <td><code>release_date</code></td>
+    <td>(integer)</td>
+  </tr>
+  <tr>
+    <td><code>director</code></td>
+    <td>(string)</td>
+  </tr>
+  <tr>
+    <td><code>lead</code></td>
+    <td>(string)</td>
+  </tr>
+  <tr>
+    <td><code>in_theaters</code></td>
+    <td>(boolean)</td>
+  </tr>
+</table>
+
+After your migration is ready, run both these commands:
+
+```sh
+bundle exec rake db:migrate
+bundle exec rake db:migrate RAKE_ENV=test
+```
+
+This will migrate your development database as well as a test database so you
+will be able to run `learn test`.
+
+You can also run this command to generate some sample data:
+
+```sh
+bundle exec rake db:seed
+```
+
+This will run the code in the `db/seeds.rb` file in order to create some movies.
+
+Then, if you want to try out your code in the console, run:
+
+```sh
+bundle exec rake console
+```
+
+Use the console to explore various Active Record methods that you'll need in
+order to pass the tests.
+
 ## Instructions
 
-Before starting this lab run `bundle`, to get the proper gem dependencies. If
-your operating system is OSX El Capitan, and you have an issue installing
-`EventMachine`, first check to make sure Open SSL is installed by entering `brew install openssl` in terminal. Once it's installed, enter `brew link openssl --force`.
+Run `learn test` to see the tests. You'll be adding new methods to the `Movie`
+class in `app/models/movie.rb` that take advantage of Active Record's build-in
+functionality.
 
-Also enter `rake -T`, which will list all of the rake tasks you have available
-in this lab. These tasks come with the `sinatra-activerecord` gem.
+The goal of this is to add some functionality to your `Movie` class while taking
+advantage of Active Record's built-in methods. For example, you might write a
+method `Movie.find_all_movies_by_year` that finds all the movies for a given
+year:
 
-Start the lab by running `learn` or keep reading for more instructions.
+```rb
+class Movie < ActiveRecord::Base
 
-### Create Table
+  def self.find_all_movies_by_year(year)
+    Movie.where(year: year)
+  end
 
-Try using the rake task `rake db:create_migration NAME=create_movies` to create
-your migration file. Once you have a migration file add columns like so:
+end
+```
 
-|Column Name|Type|
-|----|-----------|
-|`title`|\(string\)|
-|`release_date`|\(integer\)|
-|`director`|\(string\)|
-|`lead`|\(string\)|
-|`in_theaters`|\(boolean\)|
-
-After your migration is ready run `rake db:migrate` to
-migrate your table and `rake db:migrate SINATRA_ENV=test` to migrate a test
-database so you will be able to run `learn`
-
-### Tests
-
-Run `rspec` or `learn` to see the tests. To make them pass open
-`movie_controller.rb` and complete each method. It will help to open
-`spec/models/movie_spec.rb` to see exactly what each spec is testing for.
-
-In each method the `__` corresponds to a line of code you will need to write to
-make the spec pass.
+`.where` is a built-in Active Record method that queries the database and
+returns a list of all items that match the criteria being passed as an argument.
 
 Each test will take us through performing a basic CRUD action using the database
-we just created. These tests will take you through:
+we just created. You'll need to refer to the
+[Active Record Query Interface][querying] documentation to find the best methods
+to use.
 
-#### Create
+**Note**: Pay attention to which methods are instance methods (`#`) and which
+are class methods (`.`).
+
+### Create
 
 - A movie can be instantiated, given a title, and saved
-- A movie can be instantiated with a hash containing all of its attributes
-- A movie can be created in a block
 
-#### Read
+### Read
 
-- You can return the first item in the table
-- You can return the last item in the table
-- You can return the number of records in the table
-- You can return a movie from the table based on its attributes
-- You can use a `where` clause to select the appropriate movies and sort them by
-  release date
+- Can return the first item in the table
+- Can return the last item in the table
+- Can return the number of records in the table
+- Can return a movie from the table based on its id with the `.find` method
+- Can return a movie from the table based on its attributes with the
+  `.find_by` method
+- Can use a `.where` clause to select the appropriate movies released after 2002
 
-#### Update
+### Update
 
-- Can be found, updated, and saved
-- Can be updated using the `update` method
-- Can update all records at once
+- Can update a single movie using the `#update` method
+- Can update the title of all records at once using the `.update` method
 
-#### Destroy
+### Delete
 
-- Can destroy a single item
-- Can destroy all items at once
+- Can delete a single item with the `#destroy` method
+- Can delete all items at once with the `.destroy_all` method
 
 ## Resources
 
-[Active Record Query Interface](http://guides.rubyonrails.org/active_record_querying.html).
+- [Active Record Query Interface][querying]
 
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/activerecord-crud' title='Active Record CRUD'>Active Record CRUD</a> on Learn.co and start learning to code for free.</p>
-
-<<<<<<< HEAD
-=======
-##Resources
-[Active Record Query Interface](http://guides.rubyonrails.org/active_record_querying.html).
->>>>>>> Update README.md
+[querying]: https://guides.rubyonrails.org/active_record_querying.html
