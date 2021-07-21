@@ -156,5 +156,4 @@ describe Movie do
       end
     end
   end
-
 end
