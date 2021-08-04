@@ -26,33 +26,13 @@ bundle exec rake db:create_migration NAME=create_movies
 
 Once you have a migration file, add columns like so:
 
-<table border="1" cellpadding="4" cellspacing="0">
-  <tr>
-    <th>Column Name</th>
-    <th>Type</th>
-  </tr>
-  
-  <tr>
-    <td><code>title</code></td>
-    <td>(string)</td>
-  </tr>
-  <tr>
-    <td><code>release_date</code></td>
-    <td>(integer)</td>
-  </tr>
-  <tr>
-    <td><code>director</code></td>
-    <td>(string)</td>
-  </tr>
-  <tr>
-    <td><code>lead</code></td>
-    <td>(string)</td>
-  </tr>
-  <tr>
-    <td><code>in_theaters</code></td>
-    <td>(boolean)</td>
-  </tr>
-</table>
+| Column Name | Type |
+| --- | --- |
+| title | (string) |
+| release_date | (integer) |
+| director | (string) |
+| lead | (string) |
+| in_theaters | (boolean) |
 
 After your migration is ready, run both these commands:
 
