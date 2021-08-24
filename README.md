@@ -20,25 +20,25 @@ Start the lab by running `learn test` or keep reading for more instructions.
 
 Try using a Rake task to create your migration file:
 
-```sh
-bundle exec rake db:create_migration NAME=create_movies
+```console
+$ bundle exec rake db:create_migration NAME=create_movies
 ```
 
 Once you have a migration file, add columns like so:
 
-| Column Name | Type |
-| --- | --- |
-| title | (string) |
+| Column Name  | Type      |
+| ------------ | --------- |
+| title        | (string)  |
 | release_date | (integer) |
-| director | (string) |
-| lead | (string) |
-| in_theaters | (boolean) |
+| director     | (string)  |
+| lead         | (string)  |
+| in_theaters  | (boolean) |
 
 After your migration is ready, run both these commands:
 
-```sh
-bundle exec rake db:migrate
-bundle exec rake db:migrate RAKE_ENV=test
+```console
+$ bundle exec rake db:migrate
+$ bundle exec rake db:migrate RAKE_ENV=test
 ```
 
 This will migrate your development database as well as a test database so you
@@ -46,16 +46,16 @@ will be able to run `learn test`.
 
 You can also run this command to generate some sample data:
 
-```sh
-bundle exec rake db:seed
+```console
+$ bundle exec rake db:seed
 ```
 
 This will run the code in the `db/seeds.rb` file in order to create some movies.
 
 Then, if you want to try out your code in the console, run:
 
-```sh
-bundle exec rake console
+```console
+$ bundle exec rake console
 ```
 
 Use the console to explore various Active Record methods that you'll need in
