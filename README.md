@@ -1,5 +1,9 @@
 # Active Record CRUD Operations Lab
 
+## Learning Goals
+
+- Perform CRUD operations on a SQL database table using Active Record
+
 ## Introduction
 
 The goal of this lab is to get comfortable performing CRUD (Create, Read,
