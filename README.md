@@ -78,11 +78,9 @@ year:
 
 ```rb
 class Movie < ActiveRecord::Base
-
   def self.find_all_movies_by_year(year)
     Movie.where(year: year)
   end
-
 end
 ```
 
@@ -90,36 +88,41 @@ end
 returns a list of all items that match the criteria being passed as an argument.
 
 Each test will take us through performing a basic CRUD action using the database
-we just created. You'll need to refer to the
-[Active Record Query Interface][querying] documentation to find the best methods
-to use.
+we just created. You'll need to refer to the [Active Record Query
+Interface][querying] documentation to find the best methods to use.
 
 **Note**: Pay attention to which methods are instance methods (`#`) and which
 are class methods (`.`).
 
 ### Create
 
-- A movie can be instantiated, given a title, and saved
+- `Movie.create_with_title`: instantiates a movie with a given title, and saves
+  it to the database
 
 ### Read
 
-- Can return the first item in the table
-- Can return the last item in the table
-- Can return the number of records in the table
-- Can return a movie from the table based on its id with the `.find` method
-- Can return a movie from the table based on its attributes with the
-  `.find_by` method
-- Can use a `.where` clause to select the appropriate movies released after 2002
+- `Movie.first_movie`: returns the first item in the table
+- `Movie.last_movie`: returns the last item in the table
+- `Movie.movie_count`: returns the number of records in the table
+- `Movie.find_movie_with_id`: returns a movie from the table based on its id
+  with the `.find` method
+- `Movie.find_movie_with_attributes`: returns a movie from the table based on
+  its attributes with the `.find_by` method
+- `Movie.find_movies_after_2002`: uses a `.where` clause to select the
+  appropriate movies released after 2002
 
 ### Update
 
-- Can update a single movie using the `#update` method
-- Can update the title of all records at once using the `.update` method
+- `Movie.update_with_attributes`: updates a single movie using the `#update`
+  method
+- `Movie.update_all_titles`: updates the title of all records at once using the
+  `.update` method
 
 ### Delete
 
-- Can delete a single item with the `#destroy` method
-- Can delete all items at once with the `.destroy_all` method
+- `Movie.delete_by_id`: deletes a single item with the `#destroy` method
+- `Movie.delete_all_movies`: deletes all items at once with the `.destroy_all`
+  method
 
 ## Resources
 
