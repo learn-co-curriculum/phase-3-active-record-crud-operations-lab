@@ -113,7 +113,7 @@ are class methods (`.`).
 
 ### Update
 
-- `Movie.update_with_attributes`: updates a single movie using the `#update`
+- `Movie#update_with_attributes`: updates a single movie using the `#update`
   method
 - `Movie.update_all_titles`: updates the title of all records at once using the
   `.update` method
