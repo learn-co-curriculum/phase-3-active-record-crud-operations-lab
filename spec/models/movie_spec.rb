@@ -74,7 +74,7 @@ describe Movie do
     end
     
     describe '.last_movie' do
-      it 'returns the first item in the movies table' do
+      it 'returns the last item in the movies table' do
         expect(Movie.last_movie.title).to eq("Movie_4")
       end
     end
