@@ -25,5 +25,9 @@ class Movie < ActiveRecord::Base
         self.find_by(attributes)
       end
     
+      def self.find_movies_after_2002
+        self.where("release_date > 2002")
+      end
+
 end
 
