@@ -4,5 +4,10 @@ class Movie < ActiveRecord::Base
         movie.save
         movie
       end
-  
+
+      def self.first_movie
+        self.first
+      end
+      
 end
+
