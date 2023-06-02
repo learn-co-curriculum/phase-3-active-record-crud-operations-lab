@@ -42,7 +42,10 @@ class Movie < ActiveRecord::Base
         movie.destroy if movie
     end
     
-      
+    def self.delete_all_movies
+        self.destroy_all
+    end
+
 end
 
   
