@@ -13,5 +13,9 @@ class Movie < ActiveRecord::Base
         self.last
       end
       
+      def self.movie_count
+        self.count
+      end
+
 end
 
