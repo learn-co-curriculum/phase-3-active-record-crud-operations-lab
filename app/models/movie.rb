@@ -12,9 +12,13 @@ class Movie < ActiveRecord::Base
       def self.last_movie
         self.last
       end
-      
+
       def self.movie_count
         self.count
+      end
+    
+      def self.find_movie_with_id(id)
+        self.find(id)
       end
 
 end
