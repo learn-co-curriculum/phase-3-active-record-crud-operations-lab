@@ -12,7 +12,7 @@ class Movie < ActiveRecord::Base
       def self.last_movie
         self.last
       end
-
+      
       def self.movie_count
         self.count
       end
@@ -20,6 +20,10 @@ class Movie < ActiveRecord::Base
       def self.find_movie_with_id(id)
         self.find(id)
       end
-
+    
+      def self.find_movie_with_attributes(attributes)
+        self.find_by(attributes)
+      end
+    
 end
 
