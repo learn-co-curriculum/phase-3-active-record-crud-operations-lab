@@ -32,7 +32,11 @@ class Movie < ActiveRecord::Base
       def update_with_attributes(attributes)
         self.update(attributes)
       end
-      
+    
+      def self.update_all_titles(title)
+        self.update_all(title: title)
+      end
+  
 end
 
   
