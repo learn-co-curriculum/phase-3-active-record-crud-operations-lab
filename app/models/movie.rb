@@ -29,5 +29,10 @@ class Movie < ActiveRecord::Base
         self.where("release_date > 2002")
       end
 
+      def update_with_attributes(attributes)
+        self.update(attributes)
+      end
+      
 end
 
+  
