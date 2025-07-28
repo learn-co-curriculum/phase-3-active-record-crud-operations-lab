@@ -39,4 +39,12 @@ class Movie < ActiveRecord::Base
     Movie.all.update(title: title)
   end
 
+  def self.delete_by_id(id)
+    Movie.find(id).destroy
+  end
+
+  def self.delete_all_movies
+    Movie.all.destroy_all
+  end
+
 end
