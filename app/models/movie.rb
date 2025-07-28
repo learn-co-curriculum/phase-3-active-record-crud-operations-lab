@@ -26,4 +26,8 @@ class Movie < ActiveRecord::Base
   def self.find_movies_after_2002 
     Movie.find_by_sql("SELECT * FROM movies WHERE release_date > 2002;")
   end
+
+  def update_with_attributes(updated_attributes)
+    self.update(updated_attributes)
+  end
 end
