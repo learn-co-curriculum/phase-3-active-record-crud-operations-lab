@@ -18,4 +18,8 @@ class Movie < ActiveRecord::Base
   def self.find_movie_with_id(id) 
     Movie.find(id)
   end
+
+  def self.find_movie_with_attributes(attributes)
+    Movie.find_by(attributes)
+  end
 end
