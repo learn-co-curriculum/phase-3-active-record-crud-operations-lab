@@ -14,4 +14,8 @@ class Movie < ActiveRecord::Base
   def self.movie_count 
     Movie.count 
   end
+
+  def self.find_movie_with_id(id) 
+    Movie.find(id)
+  end
 end
