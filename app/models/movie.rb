@@ -34,4 +34,8 @@ class Movie < ActiveRecord::Base
   def self.update_all_titles(updated_title) 
     Movie.update_all(title: updated_title)
   end
+
+  def self.delete_by_id(id)
+    Movie.destroy_by(id: id)
+  end
 end
