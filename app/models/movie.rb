@@ -10,4 +10,8 @@ class Movie < ActiveRecord::Base
   def self.last_movie 
     Movie.last 
   end
+
+  def self.movie_count 
+    Movie.count 
+  end
 end
